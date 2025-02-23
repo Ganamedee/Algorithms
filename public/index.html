@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Algorithm Visualiser</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Algorithm Visualiser</h1>
+      <nav>
+        <ul>
+          <li><a href="#sorting" class="nav-link">Sorting</a></li>
+          <li><a href="#searching" class="nav-link">Searching</a></li>
+          <li><a href="#pathfinding" class="nav-link">Pathfinding</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Sorting Section (unchanged) -->
+      <section id="sorting" class="section">
+        <h2>
+          Sorting Visualisation<button
+            class="info-btn"
+            onclick="showModal('sorting-info')"
+          >
+            ⓘ
+          </button>
+        </h2>
+
+        <!-- Sorting Info Modal -->
+        <div id="sorting-info" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('sorting-info')"
+              >&times;</span
+            >
+            <h3>Sorting Algorithms</h3>
+            <p>
+              Sorting algorithms arrange elements in a specific order, typically
+              in ascending or descending order. Each algorithm has its own
+              approach and efficiency characteristics.
+            </p>
+
+            <table class="complexity-table">
+              <tr>
+                <th>Algorithm</th>
+                <th>Time Complexity (Avg)</th>
+                <th>Space Complexity</th>
+              </tr>
+              <tr>
+                <td>Bubble Sort</td>
+                <td>O(n²)</td>
+                <td>O(1)</td>
+              </tr>
+              <tr>
+                <td>Selection Sort</td>
+                <td>O(n²)</td>
+                <td>O(1)</td>
+              </tr>
+              <tr>
+                <td>Insertion Sort</td>
+                <td>O(n²)</td>
+                <td>O(1)</td>
+              </tr>
+              <tr>
+                <td>Quick Sort</td>
+                <td>O(n log n)</td>
+                <td>O(log n)</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="controls">
+          <label
+            >Algorithm:
+            <select id="sorting-algo-select">
+              <option value="bubble">Bubble Sort</option>
+              <option value="selection">Selection Sort</option>
+              <option value="insertion">Insertion Sort</option>
+              <option value="quick">Quick Sort</option>
+            </select>
+          </label>
+          <label
+            >Array Size:
+            <input
+              type="number"
+              id="sorting-size"
+              value="50"
+              min="10"
+              max="100"
+            />
+          </label>
+          <label
+            >Speed:
+            <input
+              type="range"
+              id="sorting-speed"
+              min="0"
+              max="490"
+              step="10"
+              value="450"
+            />
+          </label>
+          <button id="start-sorting" class="btn">Start Sorting</button>
+          <button id="stop-sorting" class="btn">Stop</button>
+          <button id="reset-sorting" class="btn">Reset Array</button>
+        </div>
+        <div id="sorting-container" class="visualiser-container"></div>
+      </section>
+
+      <!-- Searching Section (unchanged from previous update) -->
+      <section id="searching" class="section">
+        <h2>
+          Searching Visualisation<button
+            class="info-btn"
+            onclick="showModal('searching-info')"
+          >
+            ⓘ
+          </button>
+        </h2>
+
+        <!-- Searching Info Modal -->
+        <div id="searching-info" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('searching-info')"
+              >&times;</span
+            >
+            <h3>Searching Algorithms</h3>
+            <p>
+              Searching algorithms are designed to find a particular element
+              within a data structure. Each algorithm uses different strategies
+              to locate elements efficiently.
+            </p>
+
+            <table class="complexity-table">
+              <tr>
+                <th>Algorithm</th>
+                <th>Time Complexity</th>
+                <th>Space Complexity</th>
+              </tr>
+              <tr>
+                <td>Linear Search</td>
+                <td>O(n)</td>
+                <td>O(1)</td>
+              </tr>
+              <tr>
+                <td>Binary Search</td>
+                <td>O(log n)</td>
+                <td>O(1)</td>
+              </tr>
+            </table>
+
+            <p>
+              <strong>Note:</strong> Binary search requires the array to be
+              sorted first.
+            </p>
+          </div>
+        </div>
+        <div class="controls">
+          <label
+            >Algorithm:
+            <select id="searching-algo-select">
+              <option value="linear">Linear Search</option>
+              <option value="binary">Binary Search</option>
+            </select>
+          </label>
+          <label
+            >Array Size:
+            <input
+              type="number"
+              id="searching-size"
+              value="30"
+              min="10"
+              max="60"
+            />
+          </label>
+          <label
+            >Speed:
+            <input
+              type="range"
+              id="searching-speed"
+              min="0"
+              max="490"
+              step="10"
+              value="400"
+            />
+          </label>
+          <input type="number" id="search-value" placeholder="Enter value" />
+          <button id="start-searching" class="btn">Start Searching</button>
+          <button id="stop-searching" class="btn">Stop</button>
+          <button id="reset-searching" class="btn">Reset Array</button>
+        </div>
+        <div id="searching-container" class="visualiser-container"></div>
+      </section>
+
+      <!-- Pathfinding Section: Multiple panels side by side -->
+      <section id="pathfinding" class="section">
+        <h2>
+          Pathfinding Visualisation Comparison<button
+            class="info-btn"
+            onclick="showModal('pathfinding-info')"
+          >
+            ⓘ
+          </button>
+        </h2>
+
+        <!-- Pathfinding Info Modal -->
+        <div id="pathfinding-info" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('pathfinding-info')"
+              >&times;</span
+            >
+            <h3>Pathfinding Algorithms</h3>
+            <p>
+              Pathfinding algorithms find the shortest or optimal path between
+              two points in a graph or grid. These algorithms are essential in
+              navigation, gaming, and network routing.
+            </p>
+
+            <table class="complexity-table">
+              <tr>
+                <th>Algorithm</th>
+                <th>Time Complexity</th>
+                <th>Space Complexity</th>
+              </tr>
+              <tr>
+                <td>A* (A-Star)</td>
+                <td>O(b^d)</td>
+                <td>O(b^d)</td>
+              </tr>
+              <tr>
+                <td>Dijkstra's</td>
+                <td>O(V² + E)</td>
+                <td>O(V)</td>
+              </tr>
+            </table>
+
+            <p>
+              <strong>Note:</strong> For A*, 'b' is the branching factor and 'd'
+              is the depth. For Dijkstra's, 'V' is the number of vertices and
+              'E' is the number of edges.
+            </p>
+          </div>
+        </div>
+        <div class="controls">
+          <label
+            >Speed:
+            <input
+              type="range"
+              id="pathfinding-speed"
+              min="0"
+              max="490"
+              step="10"
+              value="450"
+            />
+          </label>
+          <button id="start-pathfinding" class="btn">Start Pathfinding</button>
+          <button id="stop-pathfinding" class="btn">Stop All</button>
+          <button id="reset-pathfinding" class="btn">Reset Grids</button>
+        </div>
+        <div class="pathfinding-panels">
+          <!-- Panel for A* -->
+          <div class="path-panel">
+            <h3>A* Algorithm</h3>
+            <canvas id="astar-canvas" class="grid-canvas"></canvas>
+          </div>
+          <!-- Panel for Dijkstra's -->
+          <div class="path-panel">
+            <h3>Dijkstra's Algorithm</h3>
+            <canvas id="dijkstra-canvas" class="grid-canvas"></canvas>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Made by Daniel Tolenaar</p>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/app.js"></script>
+    <script src="js/sorting.js"></script>
+    <script src="js/searching.js"></script>
+    <script src="js/pathfinding.js"></script>
+  </body>
+</html>
