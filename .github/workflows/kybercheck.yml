@@ -1,0 +1,27 @@
+name: KyberCheck Scan
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      scan_id:
+        required: false
+      dispatch_token:
+        required: false
+
+jobs:
+  scan:
+    name: KyberCheck Quantum Vulnerability Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run KyberCheck Scan
+        uses: KyberCheck/kybercheck-action@main
+        with:
+          api-key: ${{ secrets.KYBERCHECK_API_KEY }}
+          scan-id: ${{ inputs.scan_id }}
+          dispatch-token: ${{ inputs.dispatch_token }}
+          fail-on-critical: "true"
